@@ -6,7 +6,6 @@ import './styles/index.css'
 
 const HeatmapPage = lazy(() => import('./pages/HeatmapPage'))
 const DatabasePage = lazy(() => import('./pages/DatabasePage'))
-const NewsPage = lazy(() => import('./pages/NewsPage'))
 
 function Header() {
   const { loading, error, lastUpdated } = useData()
@@ -14,7 +13,6 @@ function Header() {
   const navItems = [
     { to: '/', label: 'Heatmap', icon: '🗺️' },
     { to: '/database', label: 'Database', icon: '📋' },
-    { to: '/news', label: 'News', icon: '📰' },
   ]
 
   const formatDate = (iso: string | null) => {
@@ -132,7 +130,6 @@ function AppContent() {
           <Routes>
             <Route path="/" element={<HeatmapPage />} />
             <Route path="/database" element={<DatabasePage />} />
-            <Route path="/news" element={<NewsPage />} />
           </Routes>
         </Suspense>
       </main>
