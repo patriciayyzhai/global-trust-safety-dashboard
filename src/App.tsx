@@ -35,7 +35,7 @@ function Header() {
             <span className="text-2xl">🛡️</span>
             <div>
               <h1 className="text-lg font-bold text-slate-900 leading-tight">
-                Trust &amp; Safety Priorities Dashboard
+                Global Trust &amp; Safety Dashboard
               </h1>
               <p className="text-xs text-slate-500 leading-tight">
                 Global regulatory severity, China sentiment &amp; key obligations · H1 2026
@@ -86,7 +86,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-sm text-slate-500">
           <p>
-            Trust &amp; Safety Priorities Dashboard — Global regulatory intelligence
+            Global Trust &amp; Safety Dashboard — Global regulatory intelligence
           </p>
           <p>
             158 markets · Regulatory severity, China sentiment &amp; key obligations (H1 2026)
