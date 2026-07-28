@@ -2,7 +2,7 @@
 
 A web-based dashboard for tracking age assurance-related regulations worldwide. Features a global risk heatmap, filterable regulation database, and LLM-powered news tracker with automated daily updates.
 
-Live site: [https://patriciayyzhai.github.io/age-assurance-dashboard/](https://patriciayyzhai.github.io/age-assurance-dashboard/)
+Live site: [https://patriciayyzhai.github.io/global-trust-safety-dashboard/](https://patriciayyzhai.github.io/global-trust-safety-dashboard/)
 
 ## Features
 
