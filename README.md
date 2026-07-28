@@ -1,4 +1,4 @@
-# Age Assurance Regulation Dashboard
+# Global Trust & Safety Dashboard
 
 A web-based dashboard for tracking age assurance-related regulations worldwide. Features a global risk heatmap, filterable regulation database, and LLM-powered news tracker with automated daily updates.
 
