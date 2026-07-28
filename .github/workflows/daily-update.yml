@@ -1,4 +1,4 @@
-name: Daily Update Pipeline
+name: Daily Monitoring Pipeline
 
 on:
   schedule:
@@ -100,7 +100,7 @@ jobs:
           body: |
             ## Items Pending Review
 
-            The automated pipeline found ${{ steps.pipeline.outputs.review_items }} news items that need manual review before being added to the database.
+            The monitoring pipeline found ${{ steps.pipeline.outputs.review_items }} items that need manual review before they should update the regulation database.
 
             Please review the classified items and either:
             1. Approve by merging this PR (the items will be added to regulations.json)

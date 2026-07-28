@@ -38,7 +38,7 @@ function Header() {
                 Global Trust &amp; Safety Dashboard
               </h1>
               <p className="text-xs text-slate-500 leading-tight">
-                Global regulatory severity, China sentiment &amp; key obligations · H1 2026
+                Global regulatory severity, China sentiment &amp; monitoring-driven obligation updates · H1 2026
               </p>
             </div>
           </div>

@@ -18,6 +18,7 @@ REGULATIONS_FILE = DATA_DIR / "regulations.json"
 REGULATION_METADATA_FILE = DATA_DIR / "regulation_metadata.json"
 OVERRIDES_FILE = DATA_DIR / "overrides.json"
 SEEN_URLS_FILE = DATA_DIR / "seen_urls.json"
+# Internal monitoring log for review / audit; no frontend tab consumes this directly.
 NEWS_ITEMS_FILE = DATA_DIR / "news_items.json"
 JURISDICTIONS_FILE = SEED_DIR / "jurisdictions.json"
 MARKETS_FILE = DATA_DIR / "markets.json"

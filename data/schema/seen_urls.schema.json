@@ -35,9 +35,9 @@
             "format": "date-time",
             "description": "When the URL was first processed"
           },
-          "news_item_id": {
+          "linked_record_id": {
             "type": ["string", "null"],
-            "description": "ID of the news item created from this URL, if any"
+            "description": "ID of the linked monitoring or regulation record created from this URL, if any"
           }
         }
       }

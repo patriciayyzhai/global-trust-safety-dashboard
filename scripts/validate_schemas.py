@@ -44,7 +44,7 @@ def run() -> bool:
     all_valid &= validate_file(REGULATIONS_FILE, REGULATIONS_SCHEMA, "regulations.json")
     all_valid &= validate_file(OVERRIDES_FILE, OVERRIDES_SCHEMA, "overrides.json")
     all_valid &= validate_file(SEEN_URLS_FILE, SEEN_URLS_SCHEMA, "seen_urls.json")
-    all_valid &= validate_file(NEWS_ITEMS_FILE, NEWS_ITEMS_SCHEMA, "news_items.json")
+    all_valid &= validate_file(NEWS_ITEMS_FILE, NEWS_ITEMS_SCHEMA, "news_items.json (monitoring log)")
     
     if all_valid:
         print("\n[validate] All files valid ✓")

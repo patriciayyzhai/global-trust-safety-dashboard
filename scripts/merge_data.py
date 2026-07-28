@@ -7,7 +7,7 @@ import hashlib
 import json
 from config import (
     REGULATIONS_FILE, REGULATION_METADATA_FILE, OVERRIDES_FILE, JURISDICTIONS_FILE,
-    MARKETS_FILE, SERVICE_TYPES_FILE, NEWS_ITEMS_FILE, MERGED_FILE, load_json, save_json, now_iso,
+    MARKETS_FILE, SERVICE_TYPES_FILE, MERGED_FILE, load_json, save_json, now_iso,
 )
 
 
@@ -133,9 +133,6 @@ def run() -> dict:
     service_types_data = load_json(SERVICE_TYPES_FILE) if SERVICE_TYPES_FILE.exists() else {
         "version": "1.0.0", "last_updated": now_iso(), "service_types": []
     }
-    news_items_data = load_json(NEWS_ITEMS_FILE) if NEWS_ITEMS_FILE.exists() else {
-        "version": "1.0.0", "last_updated": now_iso(), "news_items": []
-    }
     metadata_data = load_json(REGULATION_METADATA_FILE) if REGULATION_METADATA_FILE.exists() else {
         "version": "1.0.0", "last_updated": now_iso(), "regulations": {}
     }
@@ -157,7 +154,6 @@ def run() -> dict:
         "last_updated": markets_data.get("last_updated", now_iso()),
         "markets": markets_data.get("markets", []),
         "regulations": merged_regulations,
-        "news_items": news_items_data.get("news_items", []),
         "jurisdictions": jurisdictions_data.get("jurisdictions", []),
         "service_types": service_types_data.get("service_types", []),
     }

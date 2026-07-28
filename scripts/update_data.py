@@ -1,6 +1,6 @@
 """
-Step 4: Update regulations.json based on classified news items.
-High-confidence items are auto-committed; low-confidence items create PRs.
+Step 4: Update regulations.json based on classified monitoring inputs.
+High-confidence items are auto-committed; lower-confidence items are logged for review.
 """
 
 import hashlib
@@ -9,7 +9,7 @@ from config import (
     REGULATIONS_FILE, SEEN_URLS_FILE, NEWS_ITEMS_FILE, load_json, save_json, now_iso,
 )
 
-MAX_NEWS_ITEMS = 250
+MAX_MONITORING_ITEMS = 250
 
 
 def generate_id(prefix: str, name: str) -> str:
@@ -23,11 +23,11 @@ def normalize_url(url: str) -> str:
     return url.strip().lower().rstrip("/")
 
 
-def build_news_item(item: dict, *, auto_applied: bool) -> dict:
-    """Normalize a classified item into the frontend news shape."""
+def build_monitoring_record(item: dict, *, auto_applied: bool) -> dict:
+    """Normalize a classified monitoring item into the internal monitoring log shape."""
     classification = item["classification"]
     norm_url = normalize_url(item.get("url", ""))
-    news_id = generate_id("NEWS", norm_url or item.get("title", ""))
+    record_id = generate_id("MON", norm_url or item.get("title", ""))
     action_type = classification["action_type"]
 
     proposed_name = None
@@ -41,7 +41,7 @@ def build_news_item(item: dict, *, auto_applied: bool) -> dict:
         proposed_status = classification.get("status_change") or "proposed"
 
     return {
-        "id": news_id,
+        "id": record_id,
         "title": item.get("title", ""),
         "url": item.get("url", ""),
         "source": item.get("source", "Unknown"),
@@ -63,8 +63,8 @@ def build_news_item(item: dict, *, auto_applied: bool) -> dict:
     }
 
 
-def update_news_items(news_items: list[dict]) -> dict:
-    """Persist classified news items for the frontend news tab."""
+def update_monitoring_log(records: list[dict]) -> dict:
+    """Persist classified monitoring records for internal review and audit."""
     news_data = load_json(NEWS_ITEMS_FILE) if NEWS_ITEMS_FILE.exists() else {
         "version": "1.0.0",
         "last_updated": now_iso(),
@@ -77,14 +77,14 @@ def update_news_items(news_items: list[dict]) -> dict:
         if item.get("url")
     }
 
-    for news_item in news_items:
-        by_url[normalize_url(news_item["url"])] = news_item
+    for record in records:
+        by_url[normalize_url(record["url"])] = record
 
     merged_items = sorted(
         by_url.values(),
         key=lambda item: item.get("published_at", ""),
         reverse=True,
-    )[:MAX_NEWS_ITEMS]
+    )[:MAX_MONITORING_ITEMS]
 
     news_data["last_updated"] = now_iso()
     news_data["news_items"] = merged_items
@@ -111,18 +111,18 @@ def update_seen_urls(articles: list[dict], classified_items: list[dict]) -> dict
             seen_data["urls"][norm_url] = {
                 "url": url,
                 "first_seen": now_iso(),
-                "news_item_id": None,
+                "linked_record_id": None,
             }
             seen_data["total_count"] += 1
     
-    # Update with classified news item IDs
+    # Link processed URLs to the associated updated record when available
     for item in classified_items:
         url = item.get("url", "")
         if not url:
             continue
         norm_url = url.strip().lower().rstrip("/")
         if norm_url in seen_data["urls"]:
-            seen_data["urls"][norm_url]["news_item_id"] = item.get("id")
+            seen_data["urls"][norm_url]["linked_record_id"] = item.get("id")
     
     seen_data["last_updated"] = now_iso()
     save_json(SEEN_URLS_FILE, seen_data)
@@ -268,19 +268,19 @@ def run(classified_items: list[dict], all_articles: list[dict]) -> dict:
         regulations_data["last_updated"] = now_iso()
         save_json(REGULATIONS_FILE, regulations_data)
 
-    persisted_news_items = [
-        build_news_item(entry["news_item"], auto_applied=True)
+    persisted_monitoring_records = [
+        build_monitoring_record(entry["news_item"], auto_applied=True)
         for entry in auto_updates
     ] + [
-        build_news_item(item, auto_applied=False)
+        build_monitoring_record(item, auto_applied=False)
         for item in review_items
     ]
 
-    if persisted_news_items:
-        update_news_items(persisted_news_items)
+    if persisted_monitoring_records:
+        update_monitoring_log(persisted_monitoring_records)
 
     # Update seen URLs
-    update_seen_urls(all_articles, persisted_news_items)
+    update_seen_urls(all_articles, persisted_monitoring_records)
     
     summary = {
         "auto_updates": auto_updates,

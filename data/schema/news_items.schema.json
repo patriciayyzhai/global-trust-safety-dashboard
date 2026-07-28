@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "News Items Database",
-  "description": "Persisted classified news items displayed in the dashboard news tab",
+  "title": "Monitoring Log Database",
+  "description": "Persisted classified monitoring items used for review and audit, not a frontend news feed",
   "type": "object",
   "required": ["version", "last_updated", "news_items"],
   "properties": {

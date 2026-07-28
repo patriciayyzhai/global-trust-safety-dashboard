@@ -1,16 +1,16 @@
 # Global Trust & Safety Dashboard
 
-A web-based dashboard for tracking age assurance-related regulations worldwide. Features a global risk heatmap, filterable regulation database, and LLM-powered news tracker with automated daily updates.
+A web-based dashboard for tracking age assurance-related regulations worldwide. Features a global risk heatmap, a filterable regulation database, and an automated daily monitoring pipeline that folds relevant developments directly into regulation records.
 
 Live site: [https://patriciayyzhai.github.io/global-trust-safety-dashboard/](https://patriciayyzhai.github.io/global-trust-safety-dashboard/)
 
 ## Features
 
 - **Global Risk Heatmap** — Choropleth world map showing regulatory risk severity by country, based on platform obligations and implementation status. Filter by service type, click to drill down.
-- **Regulation Database** — Sortable, filterable table of age assurance regulations with expandable detail rows showing obligations, milestones, and litigation history.
-- **News Tracker** — LLM-classified news feed that categorizes articles into: new regulation proposals, existing regulation developments, and regulatory reports. Includes confidence scoring and auto-apply routing.
-- **Automated Daily Updates** — GitHub Actions pipeline runs at 9:00 AM SGT (Mon–Fri) to fetch news, classify with OpenAI, update the database, and redeploy.
+- **Regulation Database** — Sortable, filterable table of age assurance regulations with expandable detail rows showing obligations, milestones, litigation history, and monitoring-driven updates.
+- **Automated Daily Monitoring** — GitHub Actions pipeline runs at 9:00 AM SGT (Mon–Fri) to fetch relevant coverage, classify with OpenAI, update regulation records and labels, and redeploy.
 - **Manual Override System** — JSON-based override file ensures manual corrections are never overwritten by automated updates.
+- **Internal Monitoring Log** — Low-confidence or audit-worthy monitoring items are retained in data files for review, without a separate end-user news tab.
 
 ## Tech Stack
 
@@ -30,6 +30,7 @@ Live site: [https://patriciayyzhai.github.io/global-trust-safety-dashboard/](htt
 │   ├── regulations.json     # Base regulation data
 │   ├── overrides.json       # Manual corrections (never auto-overwritten)
 │   ├── seen_urls.json       # URL deduplication tracker
+│   ├── news_items.json      # Internal monitoring log / review queue
 │   ├── seed/                # Static reference data
 │   │   ├── jurisdictions.json
 │   │   └── service_types.json
@@ -89,9 +90,9 @@ The automated pipeline runs daily and follows this flow:
 3. **Classify** — Two-stage LLM classification:
    - Stage 1: Binary "is this regulatory?" filter
    - Stage 2: Full classification with structured data extraction
-4. **Update** — Apply classified news to database:
+4. **Update** — Apply classified monitoring results to the regulation database:
    - Confidence ≥ 0.7: Auto-commit
-   - Confidence 0.5–0.7: Create PR for manual review
+   - Confidence 0.5–0.7: Preserve in monitoring log and create PR for manual review
    - Confidence < 0.5: Discard
 5. **Notify** — Send WeCom webhook (daily digest + urgent alerts)
 6. **Merge** — Combine regulations.json + overrides.json → merged.json
@@ -144,7 +145,7 @@ Configure these in your repository settings:
 
 | Workflow | Trigger | Description |
 |----------|---------|-------------|
-| `daily-update.yml` | Cron (9 AM SGT, Mon–Fri) + Manual | Full pipeline: fetch → classify → update → notify → deploy |
+| `daily-update.yml` | Cron (9 AM SGT, Mon–Fri) + Manual | Full monitoring pipeline: fetch → classify → update regulations → notify → deploy |
 | `deploy.yml` | Push to `main` | Build and deploy to GitHub Pages |
 | `validate.yml` | Pull request | Validate JSON schemas + type check + build |
 

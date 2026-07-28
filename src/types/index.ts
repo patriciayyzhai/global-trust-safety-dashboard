@@ -62,12 +62,6 @@ export type MilestoneType =
   | 'repealed'
   | 'amended';
 
-export type ActionType =
-  | 'new_regulation_proposed'
-  | 'existing_regulation_development'
-  | 'existing_regulation_report'
-  | 'not_relevant';
-
 export type LitigationStatus =
   | 'filed'
   | 'pending'
@@ -164,28 +158,6 @@ export interface Market {
   updated_at: string;
 }
 
-export interface NewsItem {
-  id: string;
-  title: string;
-  url: string;
-  source: string;
-  published_at: string;          // ISO 8601 datetime
-  snippet?: string;
-  classification: {
-    action_type: ActionType;
-    confidence: number;           // 0-1
-    reasoning?: string;
-    regulation_id?: string;       // If classified as existing_regulation_*
-    proposed_regulation_name?: string;
-    proposed_jurisdiction_id?: string;
-    proposed_status?: RegulationStatus;
-    status_change?: RegulationStatus;
-    summary?: string;
-    auto_applied: boolean;        // Whether this was auto-committed
-  };
-  processed_at: string;           // ISO 8601 datetime
-}
-
 // --- Database File Structure ---
 
 export interface RegulationsDatabase {
@@ -214,7 +186,7 @@ export interface SeenUrlsDatabase {
   urls: Record<string, {
     url: string;
     first_seen: string;
-    news_item_id?: string | null;
+    linked_record_id?: string | null;
   }>;
 }
 
@@ -225,7 +197,6 @@ export interface MergedData {
   last_updated: string;
   markets: Market[];
   regulations: Regulation[];
-  news_items: NewsItem[];
   jurisdictions: Jurisdiction[];
   service_types: ServiceType[];
 }
@@ -276,17 +247,6 @@ export const STATUS_META: Record<RegulationStatus, {
   effective:              { label: 'Effective',               color: '#10b981', weight: 70,  order: 8 },
   enforced:               { label: 'Enforced',                color: '#ef4444', weight: 100, order: 9 },
   repealed:               { label: 'Repealed',                color: '#6b7280', weight: 0,   order: 10 },
-};
-
-export const ACTION_TYPE_META: Record<ActionType, {
-  label: string;
-  color: string;
-  icon: string;
-}> = {
-  new_regulation_proposed:            { label: 'New Regulation Proposed',         color: '#ef4444', icon: '🚨' },
-  existing_regulation_development:    { label: 'Existing Regulation Development', color: '#f59e0b', icon: '📈' },
-  existing_regulation_report:         { label: 'Existing Regulation Report',      color: '#6b7280', icon: '📰' },
-  not_relevant:                       { label: 'Not Relevant',                    color: '#d1d5db', icon: '⚪' },
 };
 
 export const SERVICE_TYPE_META: Record<ServiceTypeId, {
