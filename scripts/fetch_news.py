@@ -24,7 +24,9 @@ from config import (
     NEWS_KEYWORD_SETS,
     OFFICIAL_SOURCE_LIMIT,
     OFFICIAL_SOURCE_LINK_LIMIT,
+    OFFICIAL_SOURCE_MIN_CANDIDATE_SCORE,
     SEEN_URLS_FILE,
+    TRUSTED_NEWS_SOURCES,
     load_json,
     now_iso,
 )
@@ -57,6 +59,28 @@ DISCOVERY_KEYWORDS = (
     "media",
     "news",
     "press",
+)
+ARTICLE_PATH_HINTS = (
+    "/news/",
+    "/press/",
+    "/media/",
+    "/announcement",
+    "/announcements/",
+    "/consult",
+    "/guidance",
+    "/bill",
+    "/legislation",
+    "/services/",
+)
+GENERIC_TITLE_PATTERNS = (
+    "newsroom",
+    "media centre",
+    "press corner",
+    "updates",
+    "announcements",
+    "news / media",
+    "photo gallery",
+    "e-newsletter",
 )
 IGNORED_SUFFIXES = (
     ".jpg",
@@ -200,6 +224,12 @@ def build_article(
             "kind": monitoring_origin,
         },
     }
+
+
+def is_trusted_news_source(source_name: str) -> bool:
+    """Restrict horizon scanning to reputable international news outlets."""
+    source_name = (source_name or "").strip().lower()
+    return any(candidate.lower() == source_name for candidate in TRUSTED_NEWS_SOURCES)
 
 
 def fetch_news_for_keyword(keyword_set: str) -> list[dict]:
@@ -376,7 +406,9 @@ def candidate_link_score(text: str, url: str) -> int:
     """Score candidate article links so regulator/news items rise to the top."""
     blob = f"{text} {url}".lower()
     score = sum(1 for keyword in DISCOVERY_KEYWORDS if keyword in blob)
-    if any(token in blob for token in ("/news", "/media", "/press", "/announcements", "/updates", "/consult")):
+    if any(token in blob for token in ARTICLE_PATH_HINTS):
+        score += 3
+    if re.search(r"/20\d{2}/|/20\d{2}-\d{2}-\d{2}/", blob):
         score += 2
     return score
 
@@ -431,7 +463,7 @@ def discover_candidate_links(base_url: str, parser: DiscoveryPageParser) -> list
             continue
         seen.add(key)
         score = candidate_link_score(text, absolute)
-        if score <= 0:
+        if score < OFFICIAL_SOURCE_MIN_CANDIDATE_SCORE:
             continue
         scored.append((score, absolute))
 
@@ -465,6 +497,12 @@ def fetch_article_page(url: str, source_name: str, monitoring_origin: str) -> di
     title = " ".join(parser.title.split()) or source_name
     description = parser.meta_description or title
     published_at = extract_published_at(body, dict(response.headers))
+    lowered_title = title.lower()
+    lowered_description = description.lower()
+    if any(pattern in lowered_title for pattern in GENERIC_TITLE_PATTERNS) and not any(
+        keyword in lowered_description for keyword in DISCOVERY_KEYWORDS
+    ):
+        return None
     return build_article(
         title=title,
         url=url,
@@ -532,7 +570,12 @@ def fetch_official_source_articles(seen_urls: dict) -> list[dict]:
             if article:
                 articles.append(article)
 
-        if not candidate_urls and normalize_url(source.url) not in seen_urls:
+        if (
+            source.emit_landing_page
+            and not source.discovery_only
+            and not candidate_urls
+            and normalize_url(source.url) not in seen_urls
+        ):
             page_article = fetch_article_page(
                 source.url,
                 source_name=source.label,
@@ -556,8 +599,15 @@ def fetch_newsapi_articles() -> list[dict]:
         print(f"[fetch_news] NewsAPI query: {keyword_set}")
         try:
             batch = fetch_news_for_keyword(keyword_set)
-            articles.extend(batch)
-            print(f"  → {len(batch)} articles")
+            trusted_batch = [
+                article for article in batch
+                if is_trusted_news_source(article.get("source", {}).get("name", ""))
+            ]
+            dropped = len(batch) - len(trusted_batch)
+            if dropped:
+                print(f"  → filtered out {dropped} non-priority news sources")
+            articles.extend(trusted_batch)
+            print(f"  → {len(trusted_batch)} trusted-source articles")
         except Exception as exc:
             print(f"  → WARNING ({type(exc).__name__}): {exc}")
             response = getattr(exc, "response", None)

@@ -8,7 +8,8 @@
       "label": "Ofcom News Centre",
       "source_type": "official_newsroom",
       "url": "https://www.ofcom.org.uk/news-centre",
-      "priority": 100
+      "priority": 100,
+      "discovery_only": true
     },
     {
       "id": "GB-ICO-MEDIA",
@@ -16,7 +17,8 @@
       "label": "ICO Media Centre",
       "source_type": "official_newsroom",
       "url": "https://ico.org.uk/about-the-ico/media-centre/",
-      "priority": 90
+      "priority": 90,
+      "discovery_only": true
     },
     {
       "id": "BR-ANPD-NEWS",
@@ -24,7 +26,8 @@
       "label": "ANPD Noticias",
       "source_type": "official_newsroom",
       "url": "https://www.gov.br/anpd/pt-br/noticias",
-      "priority": 100
+      "priority": 100,
+      "discovery_only": true
     },
     {
       "id": "BR-ANPD-ENFORCEMENT",
@@ -32,7 +35,8 @@
       "label": "ANPD Fiscalizacao",
       "source_type": "official_guidance",
       "url": "https://www.gov.br/anpd/pt-br/assuntos/fiscalizacao",
-      "priority": 85
+      "priority": 85,
+      "emit_landing_page": true
     },
     {
       "id": "SG-IMDA-NEWS",
@@ -40,7 +44,8 @@
       "label": "IMDA Newsroom",
       "source_type": "official_newsroom",
       "url": "https://www.imda.gov.sg/news-and-events",
-      "priority": 100
+      "priority": 100,
+      "discovery_only": true
     },
     {
       "id": "SG-PDPC-NEWS",
@@ -48,7 +53,8 @@
       "label": "PDPC Updates",
       "source_type": "official_newsroom",
       "url": "https://www.pdpc.gov.sg/News-and-Events",
-      "priority": 90
+      "priority": 90,
+      "discovery_only": true
     },
     {
       "id": "SG-IMDA-CODES",
@@ -56,7 +62,8 @@
       "label": "IMDA Codes of Practice",
       "source_type": "official_guidance",
       "url": "https://www.imda.gov.sg/regulations-and-licensing-listing/codes-of-practice",
-      "priority": 80
+      "priority": 80,
+      "emit_landing_page": true
     },
     {
       "id": "EU-DIGITAL-NEWS",
@@ -64,7 +71,8 @@
       "label": "European Commission Digital Strategy News",
       "source_type": "official_newsroom",
       "url": "https://digital-strategy.ec.europa.eu/en/news",
-      "priority": 100
+      "priority": 100,
+      "discovery_only": true
     },
     {
       "id": "EU-PRESSCORNER",
@@ -72,7 +80,8 @@
       "label": "European Commission Press Corner",
       "source_type": "official_newsroom",
       "url": "https://ec.europa.eu/commission/presscorner/home/en",
-      "priority": 80
+      "priority": 80,
+      "discovery_only": true
     },
     {
       "id": "CA-HERITAGE-SAFE-SOCIAL",
@@ -80,7 +89,8 @@
       "label": "Canadian Heritage Safe Social Media Act",
       "source_type": "official_bill_page",
       "url": "https://www.canada.ca/en/canadian-heritage/services/safe-social-media-act.html",
-      "priority": 95
+      "priority": 95,
+      "emit_landing_page": true
     },
     {
       "id": "AU-ESAFETY-AGE-RESTRICTIONS",
@@ -88,7 +98,8 @@
       "label": "eSafety Social Media Age Restrictions",
       "source_type": "official_guidance",
       "url": "https://www.esafety.gov.au/about-us/industry-regulation/social-media-age-restrictions",
-      "priority": 95
+      "priority": 95,
+      "emit_landing_page": true
     },
     {
       "id": "KR-KMRB-MAIN",
@@ -96,7 +107,8 @@
       "label": "Korea Media Rating Board",
       "source_type": "official_regulator",
       "url": "https://www.kmrb.or.kr/eng/Main.do",
-      "priority": 75
+      "priority": 75,
+      "discovery_only": true
     },
     {
       "id": "KR-LAW-GIPA",
@@ -104,7 +116,8 @@
       "label": "South Korea law.go.kr",
       "source_type": "official_bill_page",
       "url": "https://www.law.go.kr/lsInfoP.do?lsiSeq=253000",
-      "priority": 85
+      "priority": 85,
+      "emit_landing_page": true
     },
     {
       "id": "ID-KOMDIGI",
@@ -112,7 +125,8 @@
       "label": "Komdigi",
       "source_type": "official_regulator",
       "url": "https://www.komdigi.go.id/",
-      "priority": 70
+      "priority": 70,
+      "discovery_only": true
     },
     {
       "id": "MY-MCMC-NEWS",
@@ -120,7 +134,8 @@
       "label": "MCMC News",
       "source_type": "official_newsroom",
       "url": "https://www.mcmc.gov.my/en/media/announcements",
-      "priority": 70
+      "priority": 70,
+      "discovery_only": true
     }
   ]
 }

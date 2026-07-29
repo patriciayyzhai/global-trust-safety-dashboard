@@ -50,6 +50,24 @@ NEWS_SORT_BY = "publishedAt"
 NEWS_PAGE_SIZE = 100
 OFFICIAL_SOURCE_LIMIT = 20
 OFFICIAL_SOURCE_LINK_LIMIT = 4
+OFFICIAL_SOURCE_MIN_CANDIDATE_SCORE = 3
+
+TRUSTED_NEWS_SOURCES = [
+    "Reuters",
+    "Associated Press",
+    "AP News",
+    "BBC News",
+    "Bloomberg",
+    "Financial Times",
+    "The Guardian",
+    "The New York Times",
+    "The Wall Street Journal",
+    "Politico",
+    "Agence France-Presse",
+    "AFP",
+    "Nikkei Asia",
+    "The Globe and Mail",
+]
 
 # Keyword sets for targeted search — each set is a separate API call
 NEWS_KEYWORD_SETS = [

@@ -26,6 +26,8 @@ class MonitoringSource:
     source_type: str
     jurisdiction_id: str | None = None
     priority: int = 50
+    discovery_only: bool = False
+    emit_landing_page: bool = False
 
 
 OFFICIAL_HOST_MARKERS = (
@@ -63,6 +65,7 @@ def is_official_source_url(url: str) -> bool:
 
 
 def _load_curated_sources() -> list[MonitoringSource]:
+    tracked_jurisdictions = load_existing_regulation_jurisdictions()
     if not MONITORING_SOURCES_FILE.exists():
         return []
     data = load_json(MONITORING_SOURCES_FILE)
@@ -71,20 +74,26 @@ def _load_curated_sources() -> list[MonitoringSource]:
         url = (item.get("url") or "").strip()
         if not url:
             continue
+        jurisdiction_id = item.get("jurisdiction_id")
+        if jurisdiction_id and jurisdiction_id not in tracked_jurisdictions:
+            continue
         sources.append(
             MonitoringSource(
                 id=item["id"],
                 label=item.get("label") or item["id"],
                 url=url,
                 source_type=item.get("source_type") or "official_source",
-                jurisdiction_id=item.get("jurisdiction_id"),
+                jurisdiction_id=jurisdiction_id,
                 priority=int(item.get("priority", 50)),
+                discovery_only=bool(item.get("discovery_only", False)),
+                emit_landing_page=bool(item.get("emit_landing_page", False)),
             )
         )
     return sources
 
 
 def _derive_market_sources() -> list[MonitoringSource]:
+    tracked_jurisdictions = load_existing_regulation_jurisdictions()
     if not MARKETS_FILE.exists():
         return []
     data = load_json(MARKETS_FILE)
@@ -94,6 +103,8 @@ def _derive_market_sources() -> list[MonitoringSource]:
         if not is_official_source_url(url):
             continue
         jurisdiction_id = market.get("jurisdiction_id") or market.get("id")
+        if jurisdiction_id not in tracked_jurisdictions:
+            continue
         sources.append(
             MonitoringSource(
                 id=f"{jurisdiction_id}-MARKET-SOURCE",
@@ -102,6 +113,8 @@ def _derive_market_sources() -> list[MonitoringSource]:
                 source_type="market_primary_source",
                 jurisdiction_id=jurisdiction_id,
                 priority=60,
+                discovery_only=True,
+                emit_landing_page=False,
             )
         )
     return sources
@@ -124,9 +137,23 @@ def _derive_regulation_sources() -> list[MonitoringSource]:
                 source_type="regulation_primary_source",
                 jurisdiction_id=reg.get("jurisdiction_id"),
                 priority=55,
+                discovery_only=False,
+                emit_landing_page=True,
             )
         )
     return sources
+
+
+def load_existing_regulation_jurisdictions() -> set[str]:
+    """Return the set of jurisdictions already represented in the regulation database."""
+    if not REGULATIONS_FILE.exists():
+        return set()
+    data = load_json(REGULATIONS_FILE)
+    return {
+        reg.get("jurisdiction_id")
+        for reg in data.get("regulations", [])
+        if reg.get("jurisdiction_id")
+    }
 
 
 def load_monitoring_sources(limit: int | None = None) -> list[MonitoringSource]:
