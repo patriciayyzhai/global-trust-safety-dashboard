@@ -1,6 +1,152 @@
 {
   "version": "1.0.0",
-  "last_updated": "2025-01-01T00:00:00Z",
-  "total_count": 0,
-  "urls": {}
+  "last_updated": "2026-07-29T08:25:42.070637+00:00",
+  "total_count": 29,
+  "urls": {
+    "https://www.gov.br/anpd/pt-br/acesso-a-informacao/participacao-social": {
+      "url": "https://www.gov.br/anpd/pt-br/acesso-a-informacao/participacao-social",
+      "first_seen": "2026-07-29T08:25:42.070553+00:00",
+      "linked_record_id": null
+    },
+    "https://www.gov.br/anpd/pt-br/assuntos/eca-digital": {
+      "url": "https://www.gov.br/anpd/pt-br/assuntos/eca-digital",
+      "first_seen": "2026-07-29T08:25:42.070561+00:00",
+      "linked_record_id": null
+    },
+    "https://www.gov.br/anpd/pt-br/canais_atendimento/agente-de-tratamento": {
+      "url": "https://www.gov.br/anpd/pt-br/canais_atendimento/agente-de-tratamento",
+      "first_seen": "2026-07-29T08:25:42.070565+00:00",
+      "linked_record_id": null
+    },
+    "https://digital-strategy.ec.europa.eu/en/news/commission-fines-aliexpress-eu550-million-breaching-digital-services-act": {
+      "url": "https://digital-strategy.ec.europa.eu/en/news/commission-fines-aliexpress-eu550-million-breaching-digital-services-act",
+      "first_seen": "2026-07-29T08:25:42.070568+00:00",
+      "linked_record_id": null
+    },
+    "https://digital-strategy.ec.europa.eu/en/news/commission-publishes-new-guidance-support-businesses-implementation-cyber-resilience-act": {
+      "url": "https://digital-strategy.ec.europa.eu/en/news/commission-publishes-new-guidance-support-businesses-implementation-cyber-resilience-act",
+      "first_seen": "2026-07-29T08:25:42.070571+00:00",
+      "linked_record_id": null
+    },
+    "https://www.imda.gov.sg/news-and-events": {
+      "url": "https://www.imda.gov.sg/news-and-events",
+      "first_seen": "2026-07-29T08:25:42.070573+00:00",
+      "linked_record_id": null
+    },
+    "https://www.canada.ca/en/canadian-heritage/news/2026/06/government-of-canada-introduces-legislation-to-make-social-media-services-and-ai-chatbots-safer-for-children.html": {
+      "url": "https://www.canada.ca/en/canadian-heritage/news/2026/06/government-of-canada-introduces-legislation-to-make-social-media-services-and-ai-chatbots-safer-for-children.html",
+      "first_seen": "2026-07-29T08:25:42.070575+00:00",
+      "linked_record_id": "MON-46340330"
+    },
+    "https://www.canada.ca/en/canadian-heritage/news/2026/03/government-of-canada-reconvenes-the-expert-advisory-group-on-online-safety.html": {
+      "url": "https://www.canada.ca/en/canadian-heritage/news/2026/03/government-of-canada-reconvenes-the-expert-advisory-group-on-online-safety.html",
+      "first_seen": "2026-07-29T08:25:42.070578+00:00",
+      "linked_record_id": null
+    },
+    "https://www.canada.ca/en/canadian-heritage/services/safe-social-media-act.html#a1a": {
+      "url": "https://www.canada.ca/en/canadian-heritage/services/safe-social-media-act.html#a1a",
+      "first_seen": "2026-07-29T08:25:42.070580+00:00",
+      "linked_record_id": "MON-46477a4b"
+    },
+    "https://ico.org.uk/about-the-ico/media-centre/e-newsletter": {
+      "url": "https://ico.org.uk/about-the-ico/media-centre/e-newsletter/",
+      "first_seen": "2026-07-29T08:25:42.070583+00:00",
+      "linked_record_id": null
+    },
+    "https://ico.org.uk/about-the-ico/media-centre": {
+      "url": "https://ico.org.uk/about-the-ico/media-centre/",
+      "first_seen": "2026-07-29T08:25:42.070586+00:00",
+      "linked_record_id": null
+    },
+    "https://ico.org.uk/action-weve-taken/enforcement": {
+      "url": "https://ico.org.uk/action-weve-taken/enforcement/",
+      "first_seen": "2026-07-29T08:25:42.070588+00:00",
+      "linked_record_id": null
+    },
+    "https://ico.org.uk/action-weve-taken": {
+      "url": "https://ico.org.uk/action-weve-taken/",
+      "first_seen": "2026-07-29T08:25:42.070591+00:00",
+      "linked_record_id": null
+    },
+    "https://www.pdpc.gov.sg/news-and-events": {
+      "url": "https://www.pdpc.gov.sg/News-and-Events",
+      "first_seen": "2026-07-29T08:25:42.070593+00:00",
+      "linked_record_id": null
+    },
+    "https://ec.europa.eu/commission/presscorner/home/en": {
+      "url": "https://ec.europa.eu/commission/presscorner/home/en",
+      "first_seen": "2026-07-29T08:25:42.070595+00:00",
+      "linked_record_id": null
+    },
+    "https://www.imda.gov.sg/regulations-and-licensing-listing/codes-of-practice": {
+      "url": "https://www.imda.gov.sg/regulations-and-licensing-listing/codes-of-practice",
+      "first_seen": "2026-07-29T08:25:42.070598+00:00",
+      "linked_record_id": null
+    },
+    "https://www.mcmc.gov.my/skmmgovmy/media/general/pdf/extension-period-of-the-public-consultation-on-the-proposed-amendments-to-the-communications-and-multimedia-act-1998-act-588.pdf": {
+      "url": "https://www.mcmc.gov.my/skmmgovmy/media/General/pdf/EXTENSION-PERIOD-OF-THE-PUBLIC-CONSULTATION-ON-THE-PROPOSED-AMENDMENTS-TO-THE-COMMUNICATIONS-AND-MULTIMEDIA-ACT-1998-ACT-588.pdf",
+      "first_seen": "2026-07-29T08:25:42.070600+00:00",
+      "linked_record_id": null
+    },
+    "https://www.mcmc.gov.my/en/media/announcements/notice-extension-period-of-the-public-consultatio": {
+      "url": "https://www.mcmc.gov.my/en/media/announcements/notice-extension-period-of-the-public-consultatio",
+      "first_seen": "2026-07-29T08:25:42.070603+00:00",
+      "linked_record_id": null
+    },
+    "https://www.mcmc.gov.my/en/media/announcements/notice-implementation-of-digital-apparatus-assig": {
+      "url": "https://www.mcmc.gov.my/en/media/announcements/notice-implementation-of-digital-apparatus-assig",
+      "first_seen": "2026-07-29T08:25:42.070606+00:00",
+      "linked_record_id": null
+    },
+    "https://mincom.gov.az/en/media-en/news": {
+      "url": "https://mincom.gov.az/en/media-en/news",
+      "first_seen": "2026-07-29T08:25:42.070609+00:00",
+      "linked_record_id": null
+    },
+    "https://mincom.gov.az/en/itf2026/news": {
+      "url": "https://mincom.gov.az/en/itf2026/news",
+      "first_seen": "2026-07-29T08:25:42.070611+00:00",
+      "linked_record_id": null
+    },
+    "https://mincom.gov.az/en/media-en/announcements": {
+      "url": "https://mincom.gov.az/en/media-en/announcements",
+      "first_seen": "2026-07-29T08:25:42.070614+00:00",
+      "linked_record_id": null
+    },
+    "https://mincom.gov.az/en/media-en/photogallery": {
+      "url": "https://mincom.gov.az/en/media-en/photogallery",
+      "first_seen": "2026-07-29T08:25:42.070617+00:00",
+      "linked_record_id": null
+    },
+    "https://www.gov.bb/news_article.php?id=175": {
+      "url": "https://www.gov.bb/news_article.php?id=175",
+      "first_seen": "2026-07-29T08:25:42.070619+00:00",
+      "linked_record_id": null
+    },
+    "https://www.gov.bb/media_files/shelter-booklet-2025.pdf": {
+      "url": "https://www.gov.bb/media_files/Shelter-Booklet-2025.pdf",
+      "first_seen": "2026-07-29T08:25:42.070622+00:00",
+      "linked_record_id": null
+    },
+    "https://mininform.gov.by/ru/news-ru": {
+      "url": "https://mininform.gov.by/ru/news-ru/",
+      "first_seen": "2026-07-29T08:25:42.070624+00:00",
+      "linked_record_id": null
+    },
+    "https://mininform.gov.by/ru/news-ru/view/obnovlen-porjadok-provedenija-tvorcheskogo-konkursa-na-luchshee-osveschenie-v-smi-dejatelnosti-vooruzhennyx-12563": {
+      "url": "https://mininform.gov.by/ru/news-ru/view/obnovlen-porjadok-provedenija-tvorcheskogo-konkursa-na-luchshee-osveschenie-v-smi-dejatelnosti-vooruzhennyx-12563/",
+      "first_seen": "2026-07-29T08:25:42.070627+00:00",
+      "linked_record_id": null
+    },
+    "https://mininform.gov.by/ru/news-ru/view/startuet-priem-zajavok-na-uchastie-v-tvorcheskom-konkurse-xvala-rukam-chto-paxnut-xlebom-12560": {
+      "url": "https://mininform.gov.by/ru/news-ru/view/startuet-priem-zajavok-na-uchastie-v-tvorcheskom-konkurse-xvala-rukam-chto-paxnut-xlebom-12560/",
+      "first_seen": "2026-07-29T08:25:42.070629+00:00",
+      "linked_record_id": null
+    },
+    "https://mininform.gov.by/ru/news-ru/view/studencheskie-otrjady-kadrovyj-rezerv-strany-12566": {
+      "url": "https://mininform.gov.by/ru/news-ru/view/studencheskie-otrjady-kadrovyj-rezerv-strany-12566/",
+      "first_seen": "2026-07-29T08:25:42.070632+00:00",
+      "linked_record_id": null
+    }
+  }
 }

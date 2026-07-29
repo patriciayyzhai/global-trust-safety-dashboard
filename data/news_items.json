@@ -1,5 +1,48 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-06-24T00:00:00Z",
-  "news_items": []
+  "last_updated": "2026-07-29T08:25:42.070297+00:00",
+  "news_items": [
+    {
+      "id": "MON-46477a4b",
+      "title": "Bill C-34, the Safe Social Media Act - Canada.ca",
+      "url": "https://www.canada.ca/en/canadian-heritage/services/safe-social-media-act.html#a1a",
+      "source": "Canadian Heritage Safe Social Media Act",
+      "published_at": "2026-07-29T01:25:30+00:00",
+      "snippet": "Learn about the Safe Social Media Act, proposed legislation to improve online safety, protect children and youth, and establish a Digital Safety Commission of Canada.",
+      "classification": {
+        "action_type": "new_regulation_proposed",
+        "confidence": 0.95,
+        "reasoning": "The article discusses the Safe Social Media Act, which is identified as proposed legislation aimed at improving online safety and protecting children and youth, indicating it is a new regulatory proposal.",
+        "regulation_id": "CA-C34-2026",
+        "proposed_regulation_name": "Bill C-34, the Safe Social Media Act",
+        "proposed_jurisdiction_id": "CA",
+        "proposed_status": "proposed",
+        "status_change": null,
+        "summary": "The Safe Social Media Act is proposed legislation in Canada to enhance online safety for children and youth.",
+        "auto_applied": true
+      },
+      "processed_at": "2026-07-29T08:25:42.070232+00:00"
+    },
+    {
+      "id": "MON-46340330",
+      "title": "Government of Canada introduces legislation to make social media services and AI chatbots safer for children - Canada.ca",
+      "url": "https://www.canada.ca/en/canadian-heritage/news/2026/06/government-of-canada-introduces-legislation-to-make-social-media-services-and-ai-chatbots-safer-for-children.html",
+      "source": "Canadian Heritage Safe Social Media Act",
+      "published_at": "2026-06-10T16:39:09+00:00",
+      "snippet": "Legislation would make social media services and AI chatbot services accountable for developing services that are safe by design and that put the safety of children first",
+      "classification": {
+        "action_type": "new_regulation_proposed",
+        "confidence": 0.95,
+        "reasoning": "The article discusses the introduction of new legislation aimed at making social media services and AI chatbots safer for children, indicating that this is a new regulatory proposal.",
+        "regulation_id": "CA-C34-2026",
+        "proposed_regulation_name": "Safe Social Media Act",
+        "proposed_jurisdiction_id": "CA",
+        "proposed_status": "proposed",
+        "status_change": null,
+        "summary": "The Government of Canada has introduced legislation to enhance the safety of social media and AI chatbot services for children.",
+        "auto_applied": true
+      },
+      "processed_at": "2026-07-29T08:25:42.070219+00:00"
+    }
+  ]
 }
