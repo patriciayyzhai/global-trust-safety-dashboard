@@ -169,8 +169,9 @@ def run(articles: list[dict]) -> list[dict]:
     Returns list of classified news items.
     """
     if not client:
-        print("[classify_news] WARNING: OPENAI_API_KEY not set, skipping classification")
-        return []
+        raise RuntimeError(
+            "OPENAI_API_KEY not set. Classification cannot run without an OpenAI API key."
+        )
     
     regulations_context = build_regulations_context()
     
@@ -228,6 +229,10 @@ def run(articles: list[dict]) -> list[dict]:
     
     print(f"\n[classify_news] Stage 1 passed: {stage1_passed}/{len(articles)}")
     print(f"[classify_news] Stage 2 classified: {len(classified)}")
+    if stage1_passed and not classified:
+        print("[classify_news] Articles passed Stage 1 but none completed Stage 2 classification.")
+    elif articles and not stage1_passed:
+        print("[classify_news] All fetched articles were filtered out at Stage 1.")
     
     return classified
 

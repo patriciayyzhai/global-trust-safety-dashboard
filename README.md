@@ -8,7 +8,9 @@ Live site: [https://patriciayyzhai.github.io/global-trust-safety-dashboard/](htt
 
 - **Global Risk Heatmap** — Choropleth world map showing regulatory risk severity by country, based on platform obligations and implementation status. Filter by service type, click to drill down.
 - **Regulation Database** — Sortable, filterable table of age assurance regulations with expandable detail rows showing obligations, milestones, litigation history, and monitoring-driven updates.
-- **Automated Daily Monitoring** — GitHub Actions pipeline runs at 9:00 AM SGT (Mon–Fri) to fetch relevant coverage, classify with OpenAI, update regulation records and labels, and redeploy.
+- **Automated Daily Monitoring** — GitHub Actions pipeline runs at 9:00 AM SGT (Mon–Fri) to collect signals from both official regulator/government sources and news coverage, classify with OpenAI, update regulation records and labels, and redeploy.
+- **Source Registry** — A curated regulator-source registry, seeded from the market tracker and the database's primary sources, keeps monitoring focused on the right agencies and legislative pages.
+- **Failure Visibility** — The daily workflow now exposes fetch status and article counts in the GitHub Actions step summary, and fails when all configured monitoring sources are unavailable.
 - **Manual Override System** — JSON-based override file ensures manual corrections are never overwritten by automated updates.
 - **Internal Monitoring Log** — Low-confidence or audit-worthy monitoring items are retained in data files for review, without a separate end-user news tab.
 
@@ -33,12 +35,14 @@ Live site: [https://patriciayyzhai.github.io/global-trust-safety-dashboard/](htt
 │   ├── news_items.json      # Internal monitoring log / review queue
 │   ├── seed/                # Static reference data
 │   │   ├── jurisdictions.json
+│   │   ├── monitoring_sources.json
 │   │   └── service_types.json
 │   └── schema/              # JSON Schema validators
 ├── scripts/                 # Python data pipeline
 │   ├── config.py            # Shared configuration
 │   ├── pipeline.py          # Orchestrator
-│   ├── fetch_news.py        # NewsAPI.org fetcher
+│   ├── fetch_news.py        # Mixed official-source + news fetcher
+│   ├── source_registry.py   # Curated + derived monitoring source loader
 │   ├── classify_news.py     # LLM two-stage classifier
 │   ├── update_data.py       # Database updater
 │   ├── notify.py            # WeCom notifications
@@ -86,7 +90,10 @@ npm run preview  # Preview production build locally
 The automated pipeline runs daily and follows this flow:
 
 1. **Validate** — Check all JSON files against schemas
-2. **Fetch** — Pull news from NewsAPI.org (8 keyword sets, 24h lookback)
+2. **Fetch** — Pull monitoring inputs from:
+   - Official regulator / government sources from `data/seed/monitoring_sources.json`
+   - Official-looking primary source URLs already present in `data/markets.json` and `data/regulations.json`
+   - NewsAPI `top-headlines` across 8 keyword sets as a secondary signal
 3. **Classify** — Two-stage LLM classification:
    - Stage 1: Binary "is this regulatory?" filter
    - Stage 2: Full classification with structured data extraction
@@ -97,6 +104,8 @@ The automated pipeline runs daily and follows this flow:
 5. **Notify** — Send WeCom webhook (daily digest + urgent alerts)
 6. **Merge** — Combine regulations.json + overrides.json → merged.json
 7. **Deploy** — Build and deploy to GitHub Pages
+
+If all configured source requests fail, the pipeline fails instead of silently treating the day as "no news". If `NEWS_API_KEY` is missing or degraded, the run can still proceed on official sources alone.
 
 ## Manual Overrides
 

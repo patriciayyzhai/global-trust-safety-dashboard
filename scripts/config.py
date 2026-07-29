@@ -21,6 +21,7 @@ SEEN_URLS_FILE = DATA_DIR / "seen_urls.json"
 # Internal monitoring log for review / audit; no frontend tab consumes this directly.
 NEWS_ITEMS_FILE = DATA_DIR / "news_items.json"
 JURISDICTIONS_FILE = SEED_DIR / "jurisdictions.json"
+MONITORING_SOURCES_FILE = SEED_DIR / "monitoring_sources.json"
 MARKETS_FILE = DATA_DIR / "markets.json"
 SERVICE_TYPES_FILE = SEED_DIR / "service_types.json"
 MERGED_FILE = PUBLIC_DATA_DIR / "merged.json"
@@ -47,6 +48,8 @@ NEWS_LOOKBACK_HOURS = 24
 NEWS_LANGUAGE = "en"
 NEWS_SORT_BY = "publishedAt"
 NEWS_PAGE_SIZE = 100
+OFFICIAL_SOURCE_LIMIT = 20
+OFFICIAL_SOURCE_LINK_LIMIT = 4
 
 # Keyword sets for targeted search — each set is a separate API call
 NEWS_KEYWORD_SETS = [
