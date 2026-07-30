@@ -7,6 +7,7 @@ import hashlib
 from config import (
     CONFIDENCE_AUTO_THRESHOLD, CONFIDENCE_REVIEW_THRESHOLD,
     REGULATIONS_FILE, SEEN_URLS_FILE, NEWS_ITEMS_FILE, load_json, save_json, now_iso,
+    normalize_regulation_status,
 )
 
 MAX_MONITORING_ITEMS = 250
@@ -38,7 +39,7 @@ def build_monitoring_record(item: dict, *, auto_applied: bool) -> dict:
     if action_type == "new_regulation_proposed":
         proposed_name = classification.get("regulation_name")
         proposed_jurisdiction = classification.get("jurisdiction")
-        proposed_status = classification.get("status_change") or "proposed"
+        proposed_status = normalize_regulation_status(classification.get("status_change")) or "proposed"
 
     return {
         "id": record_id,
@@ -55,7 +56,7 @@ def build_monitoring_record(item: dict, *, auto_applied: bool) -> dict:
             "proposed_regulation_name": proposed_name,
             "proposed_jurisdiction_id": proposed_jurisdiction,
             "proposed_status": proposed_status,
-            "status_change": classification.get("status_change"),
+            "status_change": normalize_regulation_status(classification.get("status_change")),
             "summary": classification.get("summary"),
             "auto_applied": auto_applied,
         },
@@ -174,7 +175,7 @@ def apply_update_to_regulation(regulations_data: dict, news_item: dict) -> dict 
     elif action_type == "existing_regulation_development":
         # Update an existing regulation's status or add a milestone
         reg_id = classification.get("matched_regulation_id")
-        status_change = classification.get("status_change")
+        status_change = normalize_regulation_status(classification.get("status_change"))
         
         # Find the regulation
         target_reg = None

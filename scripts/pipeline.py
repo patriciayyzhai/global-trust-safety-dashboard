@@ -85,7 +85,8 @@ def run():
     # Final validation
     print("\n--- Step 7: Final validation ---")
     if not validate_schemas():
-        print("WARNING: Updated data failed validation!")
+        print("ERROR: Updated data failed validation. Aborting before downstream success is reported.")
+        sys.exit(1)
     
     print("\n" + "=" * 60)
     print(f"  Pipeline complete: {now_iso()}")

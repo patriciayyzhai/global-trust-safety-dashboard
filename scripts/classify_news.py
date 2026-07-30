@@ -9,7 +9,14 @@ import json
 from pydantic import BaseModel, Field
 from typing import Optional, Literal
 from openai import OpenAI
-from config import OPENAI_API_KEY, LLM_MODEL, load_json, REGULATIONS_FILE
+from config import (
+    OPENAI_API_KEY,
+    LLM_MODEL,
+    ALLOWED_REGULATION_STATUSES,
+    load_json,
+    normalize_regulation_status,
+    REGULATIONS_FILE,
+)
 
 client = OpenAI(api_key=OPENAI_API_KEY) if OPENAI_API_KEY else None
 
@@ -72,6 +79,8 @@ Classify this news article into one of these categories:
 Guidelines:
 - If a law is being challenged in court, that is "existing_regulation_development" with status_change="challenged" or "enjoined".
 - If a law takes effect or begins enforcement, that is "existing_regulation_development" with appropriate status_change.
+- If you provide status_change, it must be ONLY one of: {allowed_statuses}.
+- Preliminary findings, breach notices, investigations, and consultations should map to "under_review", not a custom label.
 - Opinion pieces and analyses about existing laws without new actions are "existing_regulation_report".
 - Only classify as "new_regulation_proposed" if this is genuinely the first report of a new legislative proposal.
 - Do not infer exact age thresholds unless the article clearly states them.
@@ -151,7 +160,13 @@ def classify_stage2(article: dict, regulations_context: str) -> Stage2Result | N
     completion = client.beta.chat.completions.parse(
         model=LLM_MODEL,
         messages=[
-            {"role": "system", "content": STAGE2_SYSTEM.format(regulations_context=regulations_context)},
+            {
+                "role": "system",
+                "content": STAGE2_SYSTEM.format(
+                    regulations_context=regulations_context,
+                    allowed_statuses=", ".join(ALLOWED_REGULATION_STATUSES),
+                ),
+            },
             {"role": "user", "content": STAGE2_USER.format(
                 title=title, snippet=snippet[:1000], source=source, published_at=published_at, url=url
             )},
@@ -205,7 +220,13 @@ def run(articles: list[dict]) -> list[dict]:
         
         if not s2:
             continue
-        
+
+        normalized_status_change = normalize_regulation_status(s2.status_change)
+        if s2.status_change and not normalized_status_change:
+            print(
+                f"  → Stage 2 WARNING: unsupported status_change={s2.status_change!r}; storing as null"
+            )
+
         print(f"  → Stage 2: {s2.action_type} (confidence={s2.confidence:.2f}) — {s2.reasoning}")
         
         news_item = {
@@ -220,7 +241,7 @@ def run(articles: list[dict]) -> list[dict]:
                 "reasoning": s2.reasoning,
                 "regulation_name": s2.regulation_name,
                 "jurisdiction": s2.jurisdiction,
-                "status_change": s2.status_change,
+                "status_change": normalized_status_change,
                 "summary": s2.summary,
                 "matched_regulation_id": s2.matched_regulation_id,
             },

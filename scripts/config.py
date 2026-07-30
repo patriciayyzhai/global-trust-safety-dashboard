@@ -6,6 +6,7 @@ All secrets come from environment variables (GitHub Secrets).
 import os
 from pathlib import Path
 from datetime import datetime, timezone
+from typing import Optional
 
 # --- Paths ---
 ROOT_DIR = Path(__file__).resolve().parent.parent
@@ -97,6 +98,32 @@ STATUS_WEIGHTS = {
     "repealed": 0,
 }
 
+ALLOWED_REGULATION_STATUSES = [
+    "proposed",
+    "inactive",
+    "under_review",
+    "passed",
+    "implementation_period",
+    "effective",
+    "enforced",
+    "challenged",
+    "enjoined",
+    "repealed",
+]
+
+STATUS_NORMALIZATION_MAP = {
+    "breach identified": "under_review",
+    "breach found": "under_review",
+    "preliminary findings": "under_review",
+    "investigation opened": "under_review",
+    "investigation launched": "under_review",
+    "consultation launched": "under_review",
+    "consultation opened": "under_review",
+    "entered into force": "effective",
+    "comes into force": "effective",
+    "in force": "effective",
+}
+
 # --- Helper Functions ---
 
 def now_iso() -> str:
@@ -116,3 +143,19 @@ def save_json(filepath: Path, data: dict) -> None:
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
         f.write("\n")
+
+
+def normalize_regulation_status(value: Optional[str]) -> Optional[str]:
+    """Map LLM/free-text lifecycle labels onto schema-allowed regulation statuses."""
+    if value is None:
+        return None
+    normalized = value.strip().lower().replace("-", "_").replace(" ", "_")
+    if normalized in ALLOWED_REGULATION_STATUSES:
+        return normalized
+
+    alias = value.strip().lower()
+    mapped = STATUS_NORMALIZATION_MAP.get(alias)
+    if mapped:
+        return mapped
+
+    return None

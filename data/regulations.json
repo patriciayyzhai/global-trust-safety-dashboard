@@ -238,7 +238,7 @@
       "name": "Digital Services Act (DSA) — Age Assurance Provisions",
       "jurisdiction_id": "EU",
       "summary": "EU regulation requiring online platforms accessible to minors to protect minors' privacy, safety, and security. The DSA does not itself impose a general age-verification or parental-consent mandate, but it does impose minors-protection duties and additional systemic-risk obligations on very large platforms.",
-      "status": "breach identified",
+      "status": "under_review",
       "service_type_ids": [
         "social_media",
         "online_marketplace",
@@ -337,7 +337,7 @@
         {
           "id": "MS-edd70c7b",
           "regulation_id": "EU-DSA-2022",
-          "type": "breach identified",
+          "type": "amended",
           "date": "2026-07-30",
           "description": "The European Commission has found TikTok in breach of the Digital Services Act for not ensuring safe accounts for minors.",
           "source_url": "https://digital-strategy.ec.europa.eu/en/news/commission-preliminary-finds-tiktok-breach-digital-services-act-failing-ensure-safe-accounts-minors"
