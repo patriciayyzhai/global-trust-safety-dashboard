@@ -33,7 +33,9 @@ SEEN_URLS_SCHEMA = SCHEMA_DIR / "seen_urls.schema.json"
 NEWS_ITEMS_SCHEMA = SCHEMA_DIR / "news_items.schema.json"
 
 # --- Environment Variables (GitHub Secrets) ---
-NEWS_API_KEY = os.environ.get("NEWS_API_KEY", "").strip()
+GNEWS_API_KEY = os.environ.get("GNEWS_API_KEY", "").strip()
+LEGACY_NEWS_API_KEY = os.environ.get("NEWS_API_KEY", "").strip()
+NEWS_API_KEY = GNEWS_API_KEY or LEGACY_NEWS_API_KEY
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "").strip()
 WECOM_WEBHOOK_URL = os.environ.get("WECOM_WEBHOOK_URL", "").strip()
 
@@ -44,11 +46,12 @@ CONFIDENCE_REVIEW_THRESHOLD = 0.5  # >= create PR; < discard
 URGENT_CONFIDENCE_THRESHOLD = 0.85 # >= send urgent notification
 
 # --- News API Config ---
-NEWS_API_BASE = "https://newsapi.org/v2"
+NEWS_API_BASE = "https://gnews.io/api/v4"
 NEWS_LOOKBACK_HOURS = 24
 NEWS_LANGUAGE = "en"
 NEWS_SORT_BY = "publishedAt"
-NEWS_PAGE_SIZE = 100
+# GNews free plan returns up to 10 articles per request.
+NEWS_PAGE_SIZE = 10
 OFFICIAL_SOURCE_LIMIT = 20
 OFFICIAL_SOURCE_LINK_LIMIT = 4
 OFFICIAL_SOURCE_MIN_CANDIDATE_SCORE = 3

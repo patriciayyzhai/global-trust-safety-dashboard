@@ -43,30 +43,25 @@ jobs:
       - name: Debug secrets
         run: |
           # Length
-          echo "NEWS_API_KEY length: ${#NEWS_API_KEY}"
+          echo "GNEWS_API_KEY length: ${#GNEWS_API_KEY}"
           echo "OPENAI_API_KEY length: ${#OPENAI_API_KEY}"
           # First 4 + last 4 chars (masked) to spot stray characters
           # shellcheck disable=SC2155
-          if [ -n "$NEWS_API_KEY" ]; then
-            first4="${NEWS_API_KEY:0:4}"
-            last4="${NEWS_API_KEY: -4}"
-            middle_len=$(( ${#NEWS_API_KEY} - 8 ))
+          if [ -n "$GNEWS_API_KEY" ]; then
+            first4="${GNEWS_API_KEY:0:4}"
+            last4="${GNEWS_API_KEY: -4}"
+            middle_len=$(( ${#GNEWS_API_KEY} - 8 ))
             masked=$(printf '%*s' "$middle_len" '' | tr ' ' '*')
-            echo "NEWS_API_KEY format: ${first4}${masked}${last4}"
-            # Hex check (a-f0-9)
-            if [[ "$NEWS_API_KEY" =~ ^[0-9a-fA-F]+$ ]]; then
-              echo "NEWS_API_KEY: all hex ✓"
-            else
-              echo "NEWS_API_KEY: NON-HEX characters detected ⚠"
-            fi
+            echo "GNEWS_API_KEY format: ${first4}${masked}${last4}"
           fi
         env:
-          NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+          GNEWS_API_KEY: ${{ secrets.GNEWS_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
       - name: Run pipeline
         id: pipeline
         env:
+          GNEWS_API_KEY: ${{ secrets.GNEWS_API_KEY }}
           NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           WECOM_WEBHOOK_URL: ${{ secrets.WECOM_WEBHOOK_URL }}

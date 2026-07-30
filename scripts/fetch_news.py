@@ -233,14 +233,15 @@ def is_trusted_news_source(source_name: str) -> bool:
 
 
 def fetch_news_for_keyword(keyword_set: str) -> list[dict]:
-    """Fetch news articles from NewsAPI.org /top-headlines."""
+    """Fetch news articles from GNews search."""
     params = {
         "q": keyword_set,
-        "pageSize": NEWS_PAGE_SIZE,
-        "apiKey": NEWS_API_KEY,
+        "lang": "en",
+        "max": NEWS_PAGE_SIZE,
+        "apikey": NEWS_API_KEY,
     }
     resp = requests.get(
-        f"{NEWS_API_BASE}/top-headlines",
+        f"{NEWS_API_BASE}/search",
         params=params,
         timeout=30,
         headers=REQUEST_HEADERS,
@@ -251,39 +252,35 @@ def fetch_news_for_keyword(keyword_set: str) -> list[dict]:
 
 
 def validate_news_api_key() -> None:
-    """Check whether NewsAPI is usable for this run."""
+    """Check whether GNews is usable for this run."""
     key_len = len(NEWS_API_KEY) if NEWS_API_KEY else 0
-    print(f"[fetch_news] NEWS_API_KEY present: {'YES' if key_len > 0 else 'NO'} (length={key_len})")
+    provider = "GNEWS_API_KEY" if NEWS_API_KEY else "GNEWS_API_KEY/NEWS_API_KEY"
+    print(f"[fetch_news] {provider} present: {'YES' if key_len > 0 else 'NO'} (length={key_len})")
     print(f"[fetch_news] OPENAI_API_KEY present: {'YES' if OPENAI_API_KEY else 'NO'}")
 
     if not NEWS_API_KEY:
-        print("[fetch_news] WARNING: NEWS_API_KEY is not configured. Continuing with official sources only.")
+        print("[fetch_news] WARNING: GNEWS_API_KEY is not configured. Continuing with official sources only.")
         return
 
-    if key_len != 32:
-        print(f"[fetch_news] WARNING: NewsAPI keys are normally 32 hex chars. Got {key_len}.")
-    if not all(c in "0123456789abcdefABCDEF" for c in NEWS_API_KEY):
-        print("[fetch_news] WARNING: key contains non-hex characters.")
-
-    print("[fetch_news] Validating key with NewsAPI /top-headlines endpoint...")
+    print("[fetch_news] Validating key with GNews /search endpoint...")
     try:
         test_resp = requests.get(
-            f"{NEWS_API_BASE}/top-headlines",
-            params={"apiKey": NEWS_API_KEY, "q": "technology", "pageSize": 1},
+            f"{NEWS_API_BASE}/search",
+            params={"apikey": NEWS_API_KEY, "q": "technology", "lang": "en", "max": 1},
             timeout=15,
             headers=REQUEST_HEADERS,
         )
         if test_resp.status_code == 200:
             data = test_resp.json()
-            print(f"[fetch_news] ✓ Key valid — top-headlines returned totalResults={data.get('totalResults', 0)}")
+            print(f"[fetch_news] ✓ Key valid — search returned totalArticles={data.get('totalArticles', 0)}")
             return
-        print(f"[fetch_news] WARNING: NewsAPI returned HTTP {test_resp.status_code}; continuing with official sources.")
+        print(f"[fetch_news] WARNING: GNews returned HTTP {test_resp.status_code}; continuing with official sources.")
         try:
             print(f"[fetch_news] Response: {test_resp.text[:300]}")
         except Exception:
             pass
     except Exception as exc:
-        print(f"[fetch_news] WARNING: Could not validate NewsAPI ({type(exc).__name__}: {exc}). Continuing.")
+        print(f"[fetch_news] WARNING: Could not validate GNews ({type(exc).__name__}: {exc}). Continuing.")
 
 
 def load_seen_urls() -> dict:

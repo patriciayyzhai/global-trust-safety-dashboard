@@ -21,7 +21,7 @@ Live site: [https://patriciayyzhai.github.io/global-trust-safety-dashboard/](htt
 | Frontend | React 19 + TypeScript + Vite |
 | Styling | Tailwind CSS v4 |
 | Visualization | ECharts (choropleth heatmap) |
-| Data Pipeline | Python (OpenAI GPT-4o-mini, NewsAPI.org) |
+| Data Pipeline | Python (OpenAI GPT-4o-mini, GNews + official sources) |
 | CI/CD | GitHub Actions + GitHub Pages |
 | Notifications | WeCom Webhook |
 
@@ -93,7 +93,7 @@ The automated pipeline runs daily and follows this flow:
 2. **Fetch** — Pull monitoring inputs from:
    - Official regulator / government sources from `data/seed/monitoring_sources.json`
    - Official-looking primary source URLs already present in `data/markets.json` and `data/regulations.json`
-   - NewsAPI `top-headlines` across 8 keyword sets as a secondary signal
+   - GNews `search` across 8 keyword sets as a secondary signal
 3. **Classify** — Two-stage LLM classification:
    - Stage 1: Binary "is this regulatory?" filter
    - Stage 2: Full classification with structured data extraction
@@ -105,7 +105,7 @@ The automated pipeline runs daily and follows this flow:
 6. **Merge** — Combine regulations.json + overrides.json → merged.json
 7. **Deploy** — Build and deploy to GitHub Pages
 
-If all configured source requests fail, the pipeline fails instead of silently treating the day as "no news". If `NEWS_API_KEY` is missing or degraded, the run can still proceed on official sources alone.
+If all configured source requests fail, the pipeline fails instead of silently treating the day as "no news". If `GNEWS_API_KEY` is missing or degraded, the run can still proceed on official sources alone.
 
 ## Manual Overrides
 
@@ -146,7 +146,7 @@ Configure these in your repository settings:
 
 | Secret | Description |
 |--------|-------------|
-| `NEWS_API_KEY` | NewsAPI.org API key |
+| `GNEWS_API_KEY` | GNews API key |
 | `OPENAI_API_KEY` | OpenAI API key |
 | `WECOM_WEBHOOK_URL` | WeCom group webhook URL |
 
