@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-07-29T08:25:42.068511+00:00",
+  "last_updated": "2026-07-30T03:16:26.942431+00:00",
   "regulations": [
     {
       "id": "AU-OSA-2024",
@@ -238,7 +238,7 @@
       "name": "Digital Services Act (DSA) — Age Assurance Provisions",
       "jurisdiction_id": "EU",
       "summary": "EU regulation requiring online platforms accessible to minors to protect minors' privacy, safety, and security. The DSA does not itself impose a general age-verification or parental-consent mandate, but it does impose minors-protection duties and additional systemic-risk obligations on very large platforms.",
-      "status": "enforced",
+      "status": "breach identified",
       "service_type_ids": [
         "social_media",
         "online_marketplace",
@@ -333,11 +333,19 @@
           "date": "2024-02-17",
           "description": "Full applicability date for all platforms",
           "source_url": null
+        },
+        {
+          "id": "MS-edd70c7b",
+          "regulation_id": "EU-DSA-2022",
+          "type": "breach identified",
+          "date": "2026-07-30",
+          "description": "The European Commission has found TikTok in breach of the Digital Services Act for not ensuring safe accounts for minors.",
+          "source_url": "https://digital-strategy.ec.europa.eu/en/news/commission-preliminary-finds-tiktok-breach-digital-services-act-failing-ensure-safe-accounts-minors"
         }
       ],
       "litigations": [],
       "created_at": "2026-06-22T15:40:51Z",
-      "updated_at": "2026-06-23T00:00:00Z"
+      "updated_at": "2026-07-30T03:16:26.942380+00:00"
     },
     {
       "id": "US-CA-AB-2273",
@@ -1467,6 +1475,31 @@
       "litigations": [],
       "created_at": "2026-07-29T08:25:42.068496+00:00",
       "updated_at": "2026-07-29T08:25:42.068496+00:00"
+    },
+    {
+      "id": "REG-57410b2b",
+      "name": "Bill C-34, the Safe Social Media Act",
+      "jurisdiction_id": "CA",
+      "summary": "The Safe Social Media Act is proposed legislation in Canada aimed at enhancing online safety for children and youth.",
+      "status": "proposed",
+      "service_type_ids": [],
+      "year": 2026,
+      "source_url": "https://www.canada.ca/en/canadian-heritage/services/safe-social-media-act.html#a1e",
+      "tags": [],
+      "obligations": [],
+      "milestones": [
+        {
+          "id": "MS-f4a63ca0",
+          "regulation_id": "REG-57410b2b",
+          "type": "proposed",
+          "date": "2026-07-30",
+          "description": "The Safe Social Media Act is proposed legislation in Canada aimed at enhancing online safety for children and youth.",
+          "source_url": "https://www.canada.ca/en/canadian-heritage/services/safe-social-media-act.html#a1e"
+        }
+      ],
+      "litigations": [],
+      "created_at": "2026-07-30T03:16:26.942416+00:00",
+      "updated_at": "2026-07-30T03:16:26.942416+00:00"
     }
   ]
 }

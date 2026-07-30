@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-07-29T08:25:42.070637+00:00",
-  "total_count": 29,
+  "last_updated": "2026-07-30T03:16:26.944619+00:00",
+  "total_count": 42,
   "urls": {
     "https://www.gov.br/anpd/pt-br/acesso-a-informacao/participacao-social": {
       "url": "https://www.gov.br/anpd/pt-br/acesso-a-informacao/participacao-social",
@@ -146,6 +146,71 @@
     "https://mininform.gov.by/ru/news-ru/view/studencheskie-otrjady-kadrovyj-rezerv-strany-12566": {
       "url": "https://mininform.gov.by/ru/news-ru/view/studencheskie-otrjady-kadrovyj-rezerv-strany-12566/",
       "first_seen": "2026-07-29T08:25:42.070632+00:00",
+      "linked_record_id": null
+    },
+    "https://digital-strategy.ec.europa.eu/en/news/commission-preliminary-finds-tiktok-breach-digital-services-act-failing-ensure-safe-accounts-minors": {
+      "url": "https://digital-strategy.ec.europa.eu/en/news/commission-preliminary-finds-tiktok-breach-digital-services-act-failing-ensure-safe-accounts-minors",
+      "first_seen": "2026-07-30T03:16:26.944565+00:00",
+      "linked_record_id": "MON-edd70c7b"
+    },
+    "https://digital-strategy.ec.europa.eu/en/news/commission-accepts-xs-action-plan-comply-digital-services-act": {
+      "url": "https://digital-strategy.ec.europa.eu/en/news/commission-accepts-xs-action-plan-comply-digital-services-act",
+      "first_seen": "2026-07-30T03:16:26.944578+00:00",
+      "linked_record_id": null
+    },
+    "https://www.canada.ca/en/canadian-heritage/services/safe-social-media-act.html#a1e": {
+      "url": "https://www.canada.ca/en/canadian-heritage/services/safe-social-media-act.html#a1e",
+      "first_seen": "2026-07-30T03:16:26.944584+00:00",
+      "linked_record_id": "MON-f4a63ca0"
+    },
+    "https://www.law.go.kr/lsinfop.do?lsiseq=253000": {
+      "url": "https://www.law.go.kr/lsInfoP.do?lsiSeq=253000",
+      "first_seen": "2026-07-30T03:16:26.944587+00:00",
+      "linked_record_id": null
+    },
+    "https://www.mcmc.gov.my/en/media/announcements/notice-public-consultation-on-proposed-targeted": {
+      "url": "https://www.mcmc.gov.my/en/media/announcements/notice-public-consultation-on-proposed-targeted",
+      "first_seen": "2026-07-30T03:16:26.944590+00:00",
+      "linked_record_id": null
+    },
+    "https://www.canada.ca/en/services/life-events.html": {
+      "url": "https://www.canada.ca/en/services/life-events.html",
+      "first_seen": "2026-07-30T03:16:26.944593+00:00",
+      "linked_record_id": null
+    },
+    "https://www.canada.ca/en/services/youth.html": {
+      "url": "https://www.canada.ca/en/services/youth.html",
+      "first_seen": "2026-07-30T03:16:26.944599+00:00",
+      "linked_record_id": null
+    },
+    "https://www.canada.ca/en/services/benefits.html": {
+      "url": "https://www.canada.ca/en/services/benefits.html",
+      "first_seen": "2026-07-30T03:16:26.944602+00:00",
+      "linked_record_id": null
+    },
+    "https://www.canada.ca/en/services/business.html": {
+      "url": "https://www.canada.ca/en/services/business.html",
+      "first_seen": "2026-07-30T03:16:26.944604+00:00",
+      "linked_record_id": null
+    },
+    "https://digital-strategy.ec.europa.eu/en/news/commission-presents-eu-action-plan-cybersecurity-and-artificial-intelligence": {
+      "url": "https://digital-strategy.ec.europa.eu/en/news/commission-presents-eu-action-plan-cybersecurity-and-artificial-intelligence",
+      "first_seen": "2026-07-30T03:16:26.944607+00:00",
+      "linked_record_id": null
+    },
+    "https://digital-strategy.ec.europa.eu/en/news/commission-publishes-code-practice-marking-and-labelling-ai-generated-content": {
+      "url": "https://digital-strategy.ec.europa.eu/en/news/commission-publishes-code-practice-marking-and-labelling-ai-generated-content",
+      "first_seen": "2026-07-30T03:16:26.944610+00:00",
+      "linked_record_id": null
+    },
+    "https://digital-strategy.ec.europa.eu/en/news/commission-selects-europa-consortium-winner-frontier-ai-grand-challenge-project-build-european-open": {
+      "url": "https://digital-strategy.ec.europa.eu/en/news/commission-selects-europa-consortium-winner-frontier-ai-grand-challenge-project-build-european-open",
+      "first_seen": "2026-07-30T03:16:26.944612+00:00",
+      "linked_record_id": null
+    },
+    "https://digital-strategy.ec.europa.eu/en/news/supporting-implementation-ai-act-clear-guidelines": {
+      "url": "https://digital-strategy.ec.europa.eu/en/news/supporting-implementation-ai-act-clear-guidelines",
+      "first_seen": "2026-07-30T03:16:26.944615+00:00",
       "linked_record_id": null
     }
   }
