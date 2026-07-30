@@ -33,9 +33,10 @@ SEEN_URLS_SCHEMA = SCHEMA_DIR / "seen_urls.schema.json"
 NEWS_ITEMS_SCHEMA = SCHEMA_DIR / "news_items.schema.json"
 
 # --- Environment Variables (GitHub Secrets) ---
+FREE_GNEWS_API_KEY = os.environ.get("NEWS_API_KEY_FREE", "").strip()
 GNEWS_API_KEY = os.environ.get("GNEWS_API_KEY", "").strip()
 LEGACY_NEWS_API_KEY = os.environ.get("NEWS_API_KEY", "").strip()
-NEWS_API_KEY = GNEWS_API_KEY or LEGACY_NEWS_API_KEY
+NEWS_API_KEY = FREE_GNEWS_API_KEY or GNEWS_API_KEY or LEGACY_NEWS_API_KEY
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "").strip()
 WECOM_WEBHOOK_URL = os.environ.get("WECOM_WEBHOOK_URL", "").strip()
 

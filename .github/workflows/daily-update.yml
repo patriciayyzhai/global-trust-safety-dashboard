@@ -43,24 +43,28 @@ jobs:
       - name: Debug secrets
         run: |
           # Length
+          echo "NEWS_API_KEY_FREE length: ${#NEWS_API_KEY_FREE}"
           echo "GNEWS_API_KEY length: ${#GNEWS_API_KEY}"
           echo "OPENAI_API_KEY length: ${#OPENAI_API_KEY}"
           # First 4 + last 4 chars (masked) to spot stray characters
           # shellcheck disable=SC2155
-          if [ -n "$GNEWS_API_KEY" ]; then
-            first4="${GNEWS_API_KEY:0:4}"
-            last4="${GNEWS_API_KEY: -4}"
-            middle_len=$(( ${#GNEWS_API_KEY} - 8 ))
+          effective_key="${NEWS_API_KEY_FREE:-$GNEWS_API_KEY}"
+          if [ -n "$effective_key" ]; then
+            first4="${effective_key:0:4}"
+            last4="${effective_key: -4}"
+            middle_len=$(( ${#effective_key} - 8 ))
             masked=$(printf '%*s' "$middle_len" '' | tr ' ' '*')
-            echo "GNEWS_API_KEY format: ${first4}${masked}${last4}"
+            echo "effective news key format: ${first4}${masked}${last4}"
           fi
         env:
+          NEWS_API_KEY_FREE: ${{ secrets.NEWS_API_KEY_FREE }}
           GNEWS_API_KEY: ${{ secrets.GNEWS_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
       - name: Run pipeline
         id: pipeline
         env:
+          NEWS_API_KEY_FREE: ${{ secrets.NEWS_API_KEY_FREE }}
           GNEWS_API_KEY: ${{ secrets.GNEWS_API_KEY }}
           NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
