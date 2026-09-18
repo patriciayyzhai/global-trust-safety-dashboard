@@ -1,7 +1,28 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-07-30T03:16:26.944221+00:00",
+  "last_updated": "2026-09-18T05:22:24.770422+00:00",
   "news_items": [
+    {
+      "id": "MON-b395f51a",
+      "title": "EU KIDS Act to restrict social media platforms’ access to children in the EU | Shaping Europe’s digital future",
+      "url": "https://digital-strategy.ec.europa.eu/en/news/eu-kids-act-restrict-social-media-platforms-access-children-eu",
+      "source": "European Commission Digital Strategy News",
+      "published_at": "2026-09-18T05:02:07+00:00",
+      "snippet": "Today, the European Commission has adopted the EU KIDS Act to enhance the online safety of children throughout the Union.",
+      "classification": {
+        "action_type": "new_regulation_proposed",
+        "confidence": 0.9,
+        "reasoning": "The article discusses the adoption of the EU KIDS Act, which is a new regulation aimed at enhancing online safety for children in the EU, indicating it is a new proposal.",
+        "regulation_id": null,
+        "proposed_regulation_name": "EU KIDS Act",
+        "proposed_jurisdiction_id": "EU",
+        "proposed_status": "proposed",
+        "status_change": "proposed",
+        "summary": "The European Commission has adopted the EU KIDS Act to enhance the online safety of children throughout the Union.",
+        "auto_applied": true
+      },
+      "processed_at": "2026-09-18T05:22:24.770313+00:00"
+    },
     {
       "id": "MON-edd70c7b",
       "title": "Commission preliminary finds TikTok in breach of Digital Services Act for failing to ensure safe accounts for minors | Shaping Europe’s digital future",

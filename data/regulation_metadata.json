@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-07-30T03:16:26.952895+00:00",
+  "last_updated": "2026-09-18T05:22:24.779238+00:00",
   "regulations": {
     "AU-OSA-2024": {
       "created_at": "2026-06-22T15:40:51Z",
@@ -14,8 +14,8 @@
     },
     "EU-DSA-2022": {
       "created_at": "2026-06-22T15:40:51Z",
-      "updated_at": "2026-07-30T03:16:26.946831+00:00",
-      "content_hash": "8e578c97decfc13a0d654e8f923e2a7b475b682437fdbfa391fd74ef0bbda556"
+      "updated_at": "2026-09-18T05:22:24.773171+00:00",
+      "content_hash": "04d6b05afdbcfe2c289010050862d0073a58e2c4509dd8de528fcb83e1905051"
     },
     "US-CA-AB-2273": {
       "created_at": "2026-06-22T15:40:51Z",
@@ -86,6 +86,11 @@
       "created_at": "2026-07-29T08:25:42.068496+00:00",
       "updated_at": "2026-07-30T03:16:26.946831+00:00",
       "content_hash": "982f2c94afd45c8743dab955bf0f60a2f725b963d028cab4a0262dfd3397637e"
+    },
+    "REG-168ef74d": {
+      "created_at": "2026-09-18T05:22:24.768523+00:00",
+      "updated_at": "2026-09-18T05:22:24.768523+00:00",
+      "content_hash": "8bd36a5b820fb7a6a5e0bcbda339401fb9ea50ffdd64ec6f1dcd0738e4784b4f"
     }
   }
 }

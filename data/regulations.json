@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-07-30T03:16:26.942431+00:00",
+  "last_updated": "2026-09-18T05:22:24.768569+00:00",
   "regulations": [
     {
       "id": "AU-OSA-2024",
@@ -1500,6 +1500,31 @@
       "litigations": [],
       "created_at": "2026-07-30T03:16:26.942416+00:00",
       "updated_at": "2026-07-30T03:16:26.942416+00:00"
+    },
+    {
+      "id": "REG-168ef74d",
+      "name": "EU KIDS Act",
+      "jurisdiction_id": "EU",
+      "summary": "The European Commission has adopted the EU KIDS Act to enhance the online safety of children throughout the Union.",
+      "status": "proposed",
+      "service_type_ids": [],
+      "year": 2026,
+      "source_url": "https://digital-strategy.ec.europa.eu/en/news/eu-kids-act-restrict-social-media-platforms-access-children-eu",
+      "tags": [],
+      "obligations": [],
+      "milestones": [
+        {
+          "id": "MS-b395f51a",
+          "regulation_id": "REG-168ef74d",
+          "type": "proposed",
+          "date": "2026-09-18",
+          "description": "The European Commission has adopted the EU KIDS Act to enhance the online safety of children throughout the Union.",
+          "source_url": "https://digital-strategy.ec.europa.eu/en/news/eu-kids-act-restrict-social-media-platforms-access-children-eu"
+        }
+      ],
+      "litigations": [],
+      "created_at": "2026-09-18T05:22:24.768523+00:00",
+      "updated_at": "2026-09-18T05:22:24.768523+00:00"
     }
   ]
 }
